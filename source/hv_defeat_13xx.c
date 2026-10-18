@@ -1,7 +1,7 @@
 #include "config.h"
 #include "hv_defeat_13xx.h"
 #include "khook.h"
-#include "shellcode_1360.h"
+#include "shellcode_reborn.h"
 #include "utils.h"
 #include <machine/segments.h>
 #include <machine/tss.h>
@@ -346,8 +346,8 @@ static int install_startup_hook(uint64_t hv_base) {
   uint64_t oracle;
   int result;
 
-  if (kernel_write(data_cave + 0x1000, stock_shellcode_ap_1360,
-                   stock_shellcode_ap_1360_len))
+  if (kernel_write(data_cave + 0x1000, shellcode_reborn_bin,
+                   shellcode_reborn_bin_len))
     return -1;
 
   result = kh_init(&hook, kernel_read, kernel_write, ktext, data_cave, 6);
